@@ -3,12 +3,12 @@ import axios from 'axios';
 // Setting up URLs for data collected
 const apiKey = 'd681d6302c1d36abb2ea52e15f7ba6a8'; // API key
 const URL = 'https://api.themoviedb.org/3'; // API website URL
-const nowPlayingURL = '${URL}/movie/now_playing'; // current playing trailer URL
-const topRatedURL = '${URL}/movie/top_rated'; //  DB URL of top rated movies
-const movieURL = '${URL}/movie'; // DB URL of movie info
-const genreURL = '${URL}/genre/movie/list'; // DB URL of movies of specific genre
-const moviesURL = '${URL}/discover/movie'; // DB URL of movies similar to a movie
-const personURL = '${URL}/trending/person/week'; // WONT USE PROBABLY
+const nowPlayingURL = `${URL}/movie/now_playing`; // current playing trailer URL
+const topRatedURL = `${URL}/movie/top_rated`; //  DB URL of top rated movies
+const movieURL = `${URL}/movie`; // DB URL of movie info
+const genreURL = `${URL}/genre/movie/list`; // DB URL of movies of specific genre
+const moviesURL = `${URL}/discover/movie`; // DB URL of movies similar to a movie
+const personURL = `${URL}/trending/person/week`; // WONT USE PROBABLY
 
 // Get info of movie selected
 export const fetchMovies = async()=> {
