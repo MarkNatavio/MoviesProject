@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Setting up URLs for data collected
-const apiKey = 'API_KEY'; // API key
+const apiKey = 'd681d6302c1d36abb2ea52e15f7ba6a8'; // API key
 const URL = 'https://api.themoviedb.org/3'; // API website URL
 const nowPlayingURL = '${URL}/movie/now_playing'; // current playing trailer URL
 const topRatedURL = '${URL}/movie/top_rated'; //  DB URL of top rated movies
