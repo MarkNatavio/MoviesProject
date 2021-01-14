@@ -10,7 +10,7 @@ export function App() {
     <main>
       <Switch>
         <Route path="/" component={Home} exact/>
-        <Route path="/movie/::id" component={MovieInfo}/>
+        <Route path="/movie/:id" component={MovieInfo}/>
       </Switch>
     </main>
   );

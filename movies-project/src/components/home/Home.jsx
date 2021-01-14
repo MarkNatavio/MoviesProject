@@ -28,13 +28,14 @@ export function Home() {
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <RBCarousel>
+                    <RBCarousel
                         autoplay={true}
                         pauseOnVisibility={true}
                         slideshowSpeed={500}
                         version={4}
                         indicators={false}
-
+                    >
+                        {movies}
                     </RBCarousel>
                 </div>
             </div>
