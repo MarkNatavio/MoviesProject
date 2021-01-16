@@ -20,6 +20,7 @@ Methods:
 How to run?
 ```
 $ cd MoviesProject
+
 $ npm start
 
 ```
