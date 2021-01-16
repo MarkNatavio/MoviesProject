@@ -1,19 +1,19 @@
 import axios from 'axios';
 
 // Constants for the Movie Database (TMDB) API
-const apiKey = 'd681d6302c1d36abb2ea52e15f7ba6a8'; // API key (d681d6302c1d36abb2ea52e15f7ba6a8)
-const url = 'https://api.themoviedb.org/3'; // basic API URL 
-const genreUrl = `${url}/genre/movie/list`; // URL to find movies by genre
-const moviesUrl = `${url}/discover/movie`; // URL to find similar movies
-const movieUrl = `${url}/movie`; // URL to find info on movie
-const search = `${url}/search/movie?api_key=${apiKey}` // URL to find movies based on key word
+const key = 'd681d6302c1d36abb2ea52e15f7ba6a8'; // API key (d681d6302c1d36abb2ea52e15f7ba6a8)
+const URL = 'https://api.themoviedb.org/3'; // basic API URL 
+const genreUrl = `${URL}/genre/movie/list`; // URL to find movies by genre
+const moviesUrl = `${URL}/discover/movie`; // URL to find similar movies
+const movieUrl = `${URL}/movie`; // URL to find info on movie
+const search = `${URL}/search/movie?api_key=${key}` // URL to find movies based on key word
 
 // Get array of all genres
 export const fetchGenre = async () => {
     try {
         const { data } = await axios.get(genreUrl, {
             params: {
-                api_key: apiKey,
+                api_key: key,
                 language: 'en_US',
                 page: 1
             }
@@ -32,7 +32,7 @@ export const fetchMovieByGenre = async (genre_id) => {
     try {
         const { data } = await axios.get(moviesUrl, {
             params: {
-                api_key: apiKey,
+                api_key: key,
                 language: 'en_US',
                 with_genres: genre_id
             }
@@ -57,7 +57,7 @@ export const fetchMovieDetail = async (id) => {
     try {
         const { data } = await axios.get(`${movieUrl}/${id}`, {
             params: {
-                api_key: apiKey,
+                api_key: key,
                 language: 'en_US'
             }
         });
@@ -71,7 +71,7 @@ export const fetchMovieVideos = async (id) => {
     try {
         const { data } = await axios.get(`${movieUrl}/${id}/videos`, {
             params: {
-                api_key: apiKey,
+                api_key: key,
             }
         });
         return data['results'][0];
@@ -83,7 +83,7 @@ export const fetchCasts = async (id) => {
     try {
         const { data } = await axios.get(`${movieUrl}/${id}/credits`, {
             params: {
-                api_key: apiKey,
+                api_key: key,
             }
         });
         const modifiedData = data['cast'].map((c) => ({
@@ -102,7 +102,7 @@ export const fetchSimilarMovie = async (id) => {
     try {
         const { data } = await axios.get(`${movieUrl}/${id}/similar`, {
             params: {
-                api_key: apiKey,
+                api_key: key,
                 language: 'en_US'
             }
         });
@@ -126,7 +126,7 @@ export const movieSearch = async (title) => {
     try {
         const { data } = await axios.get(`${search}&query=${title}`, {
             params: {
-                api_key: apiKey,
+                api_key: key,
                 language: 'en_US'
             }
         })
