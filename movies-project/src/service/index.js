@@ -1,44 +1,17 @@
 import axios from 'axios';
 
-// Setting up URLs for data collected
-const apiKey = 'd681d6302c1d36abb2ea52e15f7ba6a8'; // API key
-const URL = 'https://api.themoviedb.org/3'; // API website URL
-const nowPlayingURL = `${URL}/movie/now_playing`; // current playing trailer URL
-const topRatedURL = `${URL}/movie/top_rated`; //  DB URL of top rated movies
-const movieURL = `${URL}/movie`; // DB URL of movie info
-const genreURL = `${URL}/genre/movie/list`; // DB URL of movies of specific genre
-const moviesURL = `${URL}/discover/movie`; // DB URL of movies similar to a movie
-const personURL = `${URL}/trending/person/week`; // WONT USE PROBABLY
+// Constants for the Movie Database (TMDB) API
+const apiKey = 'd681d6302c1d36abb2ea52e15f7ba6a8'; // API key (d681d6302c1d36abb2ea52e15f7ba6a8)
+const url = 'https://api.themoviedb.org/3'; // basic API URL 
+const genreUrl = `${url}/genre/movie/list`; // URL to find movies by genre
+const moviesUrl = `${url}/discover/movie`; // URL to find similar movies
+const movieUrl = `${url}/movie`; // URL to find info on movie
+const search = `${url}/search/movie?api_key=${apiKey}` // URL to find movies based on key word
 
-// Get info of movie selected
-export const fetchMovies = async () => {
-    try {
-        const { data } = await axios.get(nowPlayingURL, {
-            params: {
-                api_key: apiKey,
-                language: 'en_US',
-                page: 1
-            }
-        })
-
-        const posterUrl = 'https://image.tmdb.org/t/p/original/';
-        const modifiedData = data['results'].map((m) => ({
-            id: m['id'],
-            backPoster: posterUrl + m['backdrop_path'],
-            popularity: m['popularith'],
-            title: m['title'],
-            poster: posterUrl + m['poster_path'],
-            overview: m['overview'],
-            rating: m['vote_average'],
-        }))
-
-        return modifiedData;
-    } catch (error) { }
-}
-
+// Get array of all genres
 export const fetchGenre = async () => {
     try {
-        const { data } = await axios.get(genreURL, {
+        const { data } = await axios.get(genreUrl, {
             params: {
                 api_key: apiKey,
                 language: 'en_US',
@@ -49,17 +22,18 @@ export const fetchGenre = async () => {
             id: g['id'],
             name: g['name']
         }))
+
         return modifiedData;
     } catch (error) { }
 }
 
+// Get array of all movies of a genre
 export const fetchMovieByGenre = async (genre_id) => {
     try {
-        const { data } = await axios.get(moviesURL, {
+        const { data } = await axios.get(moviesUrl, {
             params: {
                 api_key: apiKey,
                 language: 'en_US',
-                page: 1,
                 with_genres: genre_id
             }
         })
@@ -78,65 +52,24 @@ export const fetchMovieByGenre = async (genre_id) => {
     } catch (error) { }
 }
 
-export const fetchPersons = async () => {
-    try {
-        const { data } = await axios.get(personURL, {
-            params: {
-                api_key: apiKey
-            }
-        })
-        const modifiedData = data['results'].map((p) => ({
-            id: p['id'],
-            popularity: p['popularity'],
-            name: p['name'],
-            profileImg: 'https://image.tmdb.org/t/p/w200' + p['profile_path'],
-            known: p['known_for_department']
-        }))
-        return modifiedData;
-    } catch (error) { }
-}
-
-export const fetchTopratedMovie = async () => {
-    try {
-        const { data } = await axios.get(topRatedURL, {
-            params: {
-                api_key: apiKey,
-                language: 'en_US',
-                page: 1
-            }
-        })
-        const posterUrl = 'https://image.tmdb.org/t/p/original/';
-        const modifiedData = data['results'].map((m) => ({
-            id: m['id'],
-            backPoster: posterUrl + m['backdrop_path'],
-            popularity: m['popularith'],
-            title: m['title'],
-            poster: posterUrl + m['poster_path'],
-            overview: m['overview'],
-            rating: m['vote_average'],
-        }))
-
-        return modifiedData;
-    } catch (error) {
-
-    }
-}
-
+// Get data on movie selected
 export const fetchMovieDetail = async (id) => {
     try {
-        const { data } = await axios.get(`${movieURL}/${id}`, {
+        const { data } = await axios.get(`${movieUrl}/${id}`, {
             params: {
                 api_key: apiKey,
                 language: 'en_US'
             }
         });
+
         return data;
     } catch (error) { }
 }
 
+// Get videos of the movie (the trailer)
 export const fetchMovieVideos = async (id) => {
     try {
-        const { data } = await axios.get(`${movieURL}/${id}/videos`, {
+        const { data } = await axios.get(`${movieUrl}/${id}/videos`, {
             params: {
                 api_key: apiKey,
             }
@@ -145,9 +78,10 @@ export const fetchMovieVideos = async (id) => {
     } catch (error) { }
 }
 
+// Get data on movie cast
 export const fetchCasts = async (id) => {
     try {
-        const { data } = await axios.get(`${movieURL}/${id}/credits`, {
+        const { data } = await axios.get(`${movieUrl}/${id}/credits`, {
             params: {
                 api_key: apiKey,
             }
@@ -163,9 +97,10 @@ export const fetchCasts = async (id) => {
     } catch (error) { }
 }
 
+// Get array of similar movies
 export const fetchSimilarMovie = async (id) => {
     try {
-        const { data } = await axios.get(`${movieURL}/${id}/similar`, {
+        const { data } = await axios.get(`${movieUrl}/${id}/similar`, {
             params: {
                 api_key: apiKey,
                 language: 'en_US'
@@ -185,3 +120,35 @@ export const fetchSimilarMovie = async (id) => {
         return modifiedData;
     } catch (error) { }
 }
+
+// Get array of movies based on key word search
+export const movieSearch = async (title) => {
+    try {
+        const { data } = await axios.get(`${search}&query=${title}`, {
+            params: {
+                api_key: apiKey,
+                language: 'en_US'
+            }
+        })
+
+        const posterUrl = 'https://image.tmdb.org/t/p/original/';
+        const modifiedData = data['results'].map((m) => ({
+            id: m['id'],
+            backPoster: posterUrl + m['backdrop_path'],
+            popularity: m['popularith'],
+            title: m['title'],
+            poster: posterUrl + m['poster_path'],
+            overview: m['overview'],
+            rating: m['vote_average'],
+        }))
+
+        return modifiedData;
+    } catch (error) { }
+}
+
+// =====================================================================================
+// Constants for GoWatchIt API
+const apiKey2 = ''; // API key
+const url2 = ''; // basic API URL 
+const movie = ``; // URL to find where movie is available
+
