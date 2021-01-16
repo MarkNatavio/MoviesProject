@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Constants for the Movie Database (TMDB) API
-const key = 'd681d6302c1d36abb2ea52e15f7ba6a8'; // API key (d681d6302c1d36abb2ea52e15f7ba6a8)
+const key = 'API_KEY_HERE'; // API key
 const URL = 'https://api.themoviedb.org/3'; // basic API URL 
 const genreUrl = `${URL}/genre/movie/list`; // URL to find movies by genre
 const moviesUrl = `${URL}/discover/movie`; // URL to find similar movies
