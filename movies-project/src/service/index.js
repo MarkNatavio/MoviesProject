@@ -145,10 +145,3 @@ export const movieSearch = async (title) => {
         return modifiedData;
     } catch (error) { }
 }
-
-// =====================================================================================
-// Constants for GoWatchIt API
-const apiKey2 = ''; // API key
-const url2 = ''; // basic API URL 
-const movie = ``; // URL to find where movie is available
-
