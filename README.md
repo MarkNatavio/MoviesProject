@@ -12,3 +12,14 @@ Methods:
 In Progress:
 - Incorporate API that provides streaming services where movie is availble
 - Incorporate searchbar
+
+How to run?
+```
+$ cd MoviesProject
+$ npm start
+```
+
+How does it work?
+```
+This is a React application that accesses the the Movie Database API in order to gain access to movie data
+```
