@@ -117,7 +117,7 @@ export function MovieDetail({ match }) {
       <div className="row mt-2">
         <i>
           <button className="btn btn-outline-info" style={{background: 'gold'}}>
-            <Link to={`/`} style={{color: 'black'}}> {"< Go Back"} </Link>
+            <Link to={`/`} style={{color: 'black'}}> {"Home"} </Link>
           </button>
         </i>
         <MoviePalyerModal
