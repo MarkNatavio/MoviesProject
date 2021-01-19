@@ -9,14 +9,14 @@ const Footer = () => {
                 <p>
                     <strong>
                     <i className="fas fa-map-marker-alt"></i> Phone:
-                    </strong>{" (929) 320-9300"}
+                    </strong>
                 </p>
                 </li>
                 <li>
                 <p>
                     <strong>
                     <i className="fas fa-envelope"></i> Email:
-                    </strong>{" mbnatavio@gmail.com"}
+                    </strong>
                 </p>
                 </li>
             </ul>
