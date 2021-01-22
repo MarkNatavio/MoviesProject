@@ -116,8 +116,8 @@ export function Home() {
 
       <div className="row mt-3">{moviesSearched}</div>
       <div className="row mt-3">{movieList} </div>
-    <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
-    <Footer/>
+	  <hr className="mt-5" style={{ borderTop: "1px solid #5a606b" }}></hr>
+	  <Footer/>
     </div>
   );
 }
