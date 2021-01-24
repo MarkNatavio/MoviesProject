@@ -15,10 +15,17 @@ Methods:
 ```
 - Use the Movie Database API to get movie data from IMDb to find movies of a specific genre
 - React App
-
+```
+API Info
+```
+- The API used is the Movie Database API (TMDb API) and it can be accessed through https://www.themoviedb.org/documentation/api
+- The API contains and distributes all the information on movies desired.
 ```
 How to run?
 ```
+Get an API key and add it to service/index.js file line 4. I have my own API key, however I encourage everyone to check the API website and get a key of their own.
+Once the API key has been added do the following:
+
 $ cd MoviesProject
 
 $ npm start
